@@ -7,6 +7,8 @@
 **Free, real-time HTML/XML tag mismatch detection tool**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-tagvalidator.com-4f9eff?style=flat-square)](https://tagvalidator.com)
+[![GitHub](https://img.shields.io/badge/GitHub-hoang--huu--thang%2Ftag--validator-181717?style=flat-square&logo=github)](https://github.com/hoang-huu-thang/tag-validator)
+[![Issues](https://img.shields.io/github/issues/hoang-huu-thang/tag-validator?style=flat-square&label=Issues)](https://github.com/hoang-huu-thang/tag-validator/issues)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 [![Built with Vite](https://img.shields.io/badge/Built%20with-Vite%205-646cff?style=flat-square)](https://vitejs.dev)
 [![React 18](https://img.shields.io/badge/React-18-61dafb?style=flat-square)](https://react.dev)
@@ -52,7 +54,7 @@ TagValidator is a production-grade web tool that detects **HTML and XML tag mism
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/tagvalidator.git
+git clone https://github.com/hoang-huu-thang/tag-validator.git
 cd tagvalidator
 
 # Install dependencies
@@ -105,6 +107,10 @@ src/
 └── types/index.ts
 ```
 
+### 🐛 Found a bug?
+
+Please [open an issue](https://github.com/hoang-huu-thang/tag-validator/issues/new) on GitHub.
+
 ### ☕ Support
 
 If you find this tool useful, consider buying me a coffee!
@@ -146,7 +152,7 @@ TagValidator là công cụ web chuyên nghiệp giúp phát hiện **lỗi tag 
 
 ```bash
 # Clone repo về máy
-git clone https://github.com/your-username/tagvalidator.git
+git clone https://github.com/hoang-huu-thang/tag-validator.git
 cd tagvalidator
 
 # Cài dependencies
@@ -198,6 +204,10 @@ src/
 │   └── fileHandler.ts
 └── types/index.ts
 ```
+
+### 🐛 Tìm thấy lỗi?
+
+Vui lòng [mở issue tại đây](https://github.com/hoang-huu-thang/tag-validator/issues/new) trên GitHub.
 
 ### ☕ Ủng hộ tác giả
 

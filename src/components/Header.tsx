@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Upload, Trash2, Sun, Moon, AlertTriangle } from 'lucide-react';
+import { Code2, Upload, Trash2, Sun, Moon, AlertTriangle, Github } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 
 interface HeaderProps {
@@ -77,6 +77,16 @@ export const Header: React.FC<HeaderProps> = ({ onUploadClick }) => {
                     <Trash2 size={13} />
                     Clear
                 </button>
+
+                <a
+                    href="https://github.com/hoang-huu-thang/tag-validator/issues/new"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost p-1.5"
+                    data-tooltip="Report an issue on GitHub"
+                >
+                    <Github size={15} />
+                </a>
 
                 <a
                     href="https://buymeacoffee.com/thanghh"
