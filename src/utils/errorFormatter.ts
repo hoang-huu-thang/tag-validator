@@ -1,4 +1,4 @@
-import type { ValidationError, Language } from '../types';
+import type { ValidationError } from '../types';
 import type { ErrorType } from '../types';
 
 /**

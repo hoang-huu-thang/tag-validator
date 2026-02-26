@@ -7,7 +7,7 @@ import WorkerConstructor from '../workers/tagValidator.worker.ts?worker';
 
 export function useWorker() {
     const workerRef = useRef<Worker | null>(null);
-    const { startValidation, setProgress, setErrors, setValidationError, content, language } = useAppStore();
+    const { startValidation, setProgress, setErrors, setValidationError } = useAppStore();
 
     // Create and store worker reference
     useEffect(() => {
@@ -28,7 +28,7 @@ export function useWorker() {
             }
         };
 
-        worker.onerror = (e) => {
+        worker.onerror = (e: ErrorEvent) => {
             setValidationError(`Worker error: ${e.message}`);
         };
 
