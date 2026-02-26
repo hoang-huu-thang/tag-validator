@@ -11,11 +11,12 @@ interface EditorPanelProps {
     onValidate: (text: string) => void;
     selectedError: ValidationError | null;
     onUploadClick: () => void;
+    onBeautifyReady?: (fn: () => void) => void;
 }
 
 const PLACEHOLDER_HINT = `<!-- Paste your HTML / XML here, or drop a file ✦ -->`;
 
-export const EditorPanel: React.FC<EditorPanelProps> = ({ onValidate, selectedError, onUploadClick }) => {
+export const EditorPanel: React.FC<EditorPanelProps> = ({ onValidate, selectedError, onUploadClick, onBeautifyReady }) => {
     const { content, setContent, language, setLanguage, errors, theme } = useAppStore();
     const { applyDecorations, clearDecorations, revealLine } = useMonacoHook();
     const editorRef = useRef<MonacoTypes.editor.IStandaloneCodeEditor | null>(null);
@@ -57,6 +58,13 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ onValidate, selectedEr
                 monacoInstance as typeof MonacoTypes,
                 errors
             );
+        }
+
+        // Expose beautify (format document) to parent
+        if (onBeautifyReady) {
+            onBeautifyReady(() => {
+                editor.getAction('editor.action.formatDocument')?.run();
+            });
         }
 
         // Auto-detect language when user pastes

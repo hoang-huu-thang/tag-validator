@@ -12,6 +12,7 @@ export default function App() {
   const { validate, cancel } = useWorker();
   const [selectedError, setSelectedError] = useState<ValidationError | null>(null);
   const [editorWidth, setEditorWidth] = useState(60); // percent
+  const [beautifyFn, setBeautifyFn] = useState<(() => void) | null>(null);
   const isResizing = useRef(false);
   const startX = useRef(0);
   const startWidth = useRef(60);
@@ -106,9 +107,9 @@ export default function App() {
           style={{ width: `${editorWidth}%`, flexShrink: 0 }}
         >
           {/* Language selector bar */}
-          <LanguageBar onValidate={handleValidate} />
+          <LanguageBarWithBeautify onValidate={handleValidate} beautifyFn={beautifyFn} />
           <div className="flex-1 min-h-0">
-            <EditorPanel onValidate={handleValidate} selectedError={selectedError} onUploadClick={handleUploadClick} />
+            <EditorPanel onValidate={handleValidate} selectedError={selectedError} onUploadClick={handleUploadClick} onBeautifyReady={setBeautifyFn} />
           </div>
         </div>
 
@@ -148,7 +149,7 @@ export default function App() {
 }
 
 // Language selector sub-component
-function LanguageBar({ onValidate }: { onValidate: (text: string) => void }) {
+function LanguageBarWithBeautify({ onValidate, beautifyFn }: { onValidate: (text: string) => void; beautifyFn?: (() => void) | null }) {
   const { language, setLanguage, content } = useAppStore();
   const languages = ['html', 'xml', 'vue', 'jsx'] as const;
 
@@ -174,6 +175,19 @@ function LanguageBar({ onValidate }: { onValidate: (text: string) => void }) {
           {lang.toUpperCase()}
         </button>
       ))}
+
+      {/* Beautify button */}
+      <div style={{ marginLeft: 'auto' }}>
+        <button
+          className="btn btn-ghost text-xs py-0.5 flex items-center gap-1"
+          disabled={!beautifyFn || !content.trim()}
+          onClick={() => beautifyFn?.()}
+          title="Format / beautify code (Shift+Alt+F)"
+          style={{ opacity: (!beautifyFn || !content.trim()) ? 0.4 : 1 }}
+        >
+          ✦ Beautify
+        </button>
+      </div>
     </div>
   );
 }
