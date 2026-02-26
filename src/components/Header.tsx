@@ -78,6 +78,30 @@ export const Header: React.FC<HeaderProps> = ({ onUploadClick }) => {
                     Clear
                 </button>
 
+                <a
+                    href="https://buymeacoffee.com/thanghh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn text-xs font-semibold transition-all duration-150"
+                    style={{
+                        background: '#FFDD00',
+                        color: '#000',
+                        border: 'none',
+                        boxShadow: '0 1px 4px rgba(255,221,0,0.3)',
+                    }}
+                    onMouseEnter={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)';
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(255,221,0,0.45)';
+                    }}
+                    onMouseLeave={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.transform = '';
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 1px 4px rgba(255,221,0,0.3)';
+                    }}
+                    data-tooltip="Support this project"
+                >
+                    ☕ Buy me a coffee
+                </a>
+
                 <div
                     className="w-px h-5 mx-1"
                     style={{ background: 'var(--border)' }}
