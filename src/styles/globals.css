@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────── */
+:root {
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #252526;
+    --bg-tertiary: #2d2d30;
+    --border: #3e3e42;
+    --text-primary: #e0e0e0;
+    --text-muted: #858585;
+    --accent: #4f9eff;
+    --accent-hover: #6fb3ff;
+    --error: #f44747;
+    --warning: #ffcc02;
+    --success: #4ec9b0;
+    --scrollbar-thumb: #424242;
+    --scrollbar-track: #1e1e1e;
+}
+
+:root.light {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e8e8e8;
+    --border: #d1d1d1;
+    --text-primary: #333333;
+    --text-muted: #888888;
+    --accent: #0066cc;
+    --accent-hover: #0052a3;
+    --error: #d32f2f;
+    --warning: #e65100;
+    --success: #2e7d32;
+    --scrollbar-thumb: #bdbdbd;
+    --scrollbar-track: #f5f5f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* ─── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ─── Monaco Error Decorations ────────────────── */
+.error-line-decoration {
+    background: rgba(244, 71, 71, 0.08) !important;
+    border-left: 3px solid var(--error) !important;
+}
+
+.error-glyph-decoration::before {
+    content: '⚠';
+    color: var(--error);
+    font-size: 12px;
+}
+
+.warning-line-decoration {
+    background: rgba(255, 204, 2, 0.06) !important;
+    border-left: 3px solid var(--warning) !important;
+}
+
+/* ─── Error Type Badges ───────────────────────── */
+.badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold tracking-wide;
+}
+
+.badge-error {
+    background: rgba(244, 71, 71, 0.15);
+    color: #f47c7c;
+    border: 1px solid rgba(244, 71, 71, 0.3);
+}
+
+.badge-warning {
+    background: rgba(255, 204, 2, 0.12);
+    color: #ffd740;
+    border: 1px solid rgba(255, 204, 2, 0.25);
+}
+
+.badge-mismatch {
+    background: rgba(255, 120, 50, 0.15);
+    color: #ff9666;
+    border: 1px solid rgba(255, 120, 50, 0.3);
+}
+
+.badge-missing-open {
+    background: rgba(100, 181, 246, 0.15);
+    color: #64b5f6;
+    border: 1px solid rgba(100, 181, 246, 0.3);
+}
+
+.badge-missing-close {
+    background: rgba(244, 71, 71, 0.15);
+    color: #f47c7c;
+    border: 1px solid rgba(244, 71, 71, 0.3);
+}
+
+/* ─── Glass Card ──────────────────────────────── */
+.glass-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+/* ─── Drop Zone Transitions ───────────────────── */
+.drop-zone-active {
+    border-color: var(--accent) !important;
+    background: rgba(79, 158, 255, 0.06) !important;
+}
+
+/* ─── Error Row Hover ─────────────────────────── */
+.error-row {
+    transition: background 0.15s ease;
+    cursor: pointer;
+}
+
+.error-row:hover {
+    background: rgba(79, 158, 255, 0.08);
+}
+
+.error-row.selected {
+    background: rgba(79, 158, 255, 0.15);
+    border-left: 2px solid var(--accent);
+}
+
+/* ─── Progress Bar ────────────────────────────── */
+.progress-bar-track {
+    background: var(--bg-tertiary);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #7c5cbf);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+}
+
+/* ─── Animations ──────────────────────────────── */
+@keyframes slideInUp {
+    from {
+        transform: translateY(12px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.animate-slide-in {
+    animation: slideInUp 0.3s ease-out both;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.25s ease-out both;
+}
+
+/* ─── Skeleton Loader ─────────────────────────── */
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--border) 50%, var(--bg-tertiary) 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+/* ─── Button Base ─────────────────────────────── */
+.btn {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-150;
+    border: 1px solid transparent;
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 158, 255, 0.3);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--border);
+}
+
+.btn-danger {
+    background: rgba(244, 71, 71, 0.15);
+    color: #f47c7c;
+    border-color: rgba(244, 71, 71, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: rgba(244, 71, 71, 0.25);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.btn-ghost:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* ─── Tooltip ─────────────────────────────────── */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #111;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 100;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+}
+
+/* ─── Resizer ─────────────────────────────────── */
+.panel-resizer {
+    width: 4px;
+    background: var(--border);
+    cursor: col-resize;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+
+.panel-resizer:hover,
+.panel-resizer.resizing {
+    background: var(--accent);
+}
