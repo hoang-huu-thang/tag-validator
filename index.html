@@ -3,11 +3,83 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TagValidator – HTML/XML Tag Mismatch Detector</title>
+
+  <!-- ─── Primary SEO ─────────────────────────────────── -->
+  <title>TagValidator – Free HTML/XML Tag Mismatch Detector Online</title>
   <meta name="description"
-    content="High-performance HTML/XML tag mismatch detection tool with real-time validation, Monaco Editor integration, and non-blocking Web Worker processing." />
+    content="Detect HTML and XML tag mismatches instantly. Free online tool with real-time validation, Monaco Editor, line-level error reporting, and auto-fix. No install needed." />
+  <meta name="keywords"
+    content="HTML validator, XML validator, tag mismatch detector, HTML error checker, XML error checker, unclosed tag finder, malformed HTML, free online validator, real-time HTML checker, Monaco editor" />
+  <meta name="author" content="TagValidator" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tagvalidator.com/" />
+
+  <!-- ─── Open Graph (Facebook, LinkedIn, Discord …) ──── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tagvalidator.com/" />
+  <meta property="og:title" content="TagValidator – Free HTML/XML Tag Mismatch Detector" />
+  <meta property="og:description"
+    content="Paste or upload your HTML/XML file and get instant, line-precise error reports. Real-time validation powered by Monaco Editor and Web Workers. 100% free." />
+  <meta property="og:image" content="https://tagvalidator.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="TagValidator – real-time HTML/XML tag mismatch detection tool" />
+  <meta property="og:site_name" content="TagValidator" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ─── Twitter Card ────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://tagvalidator.com/" />
+  <meta name="twitter:title" content="TagValidator – Free HTML/XML Tag Mismatch Detector" />
+  <meta name="twitter:description"
+    content="Real-time HTML/XML validator with Monaco Editor. Detect missing tags, mismatches, and get auto-fix suggestions. Free, no sign-up, no install." />
+  <meta name="twitter:image" content="https://tagvalidator.com/og-image.png" />
+  <meta name="twitter:image:alt" content="TagValidator app screenshot" />
+
+  <!-- ─── Favicon ──────────────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  <!-- ─── Theme color (browser chrome / PWA) ──────────── -->
+  <meta name="theme-color" content="#1e1e1e" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- ─── JSON-LD Structured Data ─────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TagValidator",
+    "url": "https://tagvalidator.com/",
+    "description": "Free online tool to detect HTML and XML tag mismatches in real-time. Supports HTML5, XML, Vue, and JSX with Monaco Editor integration.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Real-time HTML/XML validation",
+      "Line and column precision error reporting",
+      "Monaco Editor with syntax highlighting",
+      "Non-blocking Web Worker processing",
+      "Auto-fix unclosed tags",
+      "Drag-and-drop file upload",
+      "Export errors as CSV or JSON",
+      "Dark and light theme"
+    ],
+    "screenshot": "https://tagvalidator.com/og-image.png",
+    "creator": {
+      "@type": "Organization",
+      "name": "TagValidator"
+    }
+  }
+  </script>
+
+  <!-- ─── Performance: preconnect to font origins ─────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -16,6 +88,17 @@
 </head>
 
 <body>
+  <!-- Noscript fallback for crawlers -->
+  <noscript>
+    <div
+      style="font-family:sans-serif;padding:2rem;text-align:center;background:#1e1e1e;color:#e0e0e0;min-height:100vh">
+      <h1>TagValidator – HTML/XML Tag Mismatch Detector</h1>
+      <p>A free, real-time HTML and XML validator. Detect missing closing tags, mismatches, and structural errors
+        instantly.</p>
+      <p>Please enable JavaScript to use this application.</p>
+    </div>
+  </noscript>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
