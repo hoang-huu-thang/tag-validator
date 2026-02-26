@@ -12,7 +12,12 @@ export default function App() {
   const { validate, cancel } = useWorker();
   const [selectedError, setSelectedError] = useState<ValidationError | null>(null);
   const [editorWidth, setEditorWidth] = useState(60); // percent
-  const [beautifyFn, setBeautifyFn] = useState<(() => void) | null>(null);
+  const beautifyFnRef = useRef<(() => void) | null>(null);
+  const [, forceRender] = useState(0);
+  const setBeautifyFn = useCallback((fn: () => void) => {
+    beautifyFnRef.current = fn;
+    forceRender(n => n + 1);
+  }, []);
   const isResizing = useRef(false);
   const startX = useRef(0);
   const startWidth = useRef(60);
@@ -107,7 +112,7 @@ export default function App() {
           style={{ width: `${editorWidth}%`, flexShrink: 0 }}
         >
           {/* Language selector bar */}
-          <LanguageBarWithBeautify onValidate={handleValidate} beautifyFn={beautifyFn} />
+          <LanguageBarWithBeautify onValidate={handleValidate} beautifyFn={beautifyFnRef.current} />
           <div className="flex-1 min-h-0">
             <EditorPanel onValidate={handleValidate} selectedError={selectedError} onUploadClick={handleUploadClick} onBeautifyReady={setBeautifyFn} />
           </div>
