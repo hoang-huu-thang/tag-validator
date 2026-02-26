@@ -16,7 +16,7 @@ self.onmessage = async (event: MessageEvent<MainMessage>) => {
     if (type !== 'VALIDATE' || !payload) return;
 
     cancelled = false;
-    const { content } = payload;
+    const { content, language } = payload;
 
     const TIMEOUT_MS = 10_000;
     const startTime = Date.now();
@@ -32,7 +32,7 @@ self.onmessage = async (event: MessageEvent<MainMessage>) => {
         self.postMessage(progressMsg);
 
         // Parse tokens
-        const { tokens } = parseContent(content);
+        const { tokens } = parseContent(content, language);
 
         if (cancelled) return;
 
