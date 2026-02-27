@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Install deps first (layer cache)
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install --include=dev --legacy-peer-deps
 
 # Copy source and build
 COPY . .
