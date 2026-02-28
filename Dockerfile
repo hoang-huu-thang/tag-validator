@@ -1,27 +1,50 @@
-# ── Stage 1: Build ────────────────────────────────────
+# ─────────────────────────────────────────────
+# Stage 1 — Dependencies (cache layer tốt nhất)
+# ─────────────────────────────────────────────
+FROM node:20-alpine AS deps
+
+WORKDIR /app
+
+# copy only dependency files
+COPY package.json package-lock.json ./
+
+# install ALL deps (including dev)
+RUN npm ci
+
+
+# ─────────────────────────────────────────────
+# Stage 2 — Build app
+# ─────────────────────────────────────────────
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install deps first (layer cache)
-COPY package*.json ./
+# reuse node_modules from deps layer
+COPY --from=deps /app/node_modules ./node_modules
 
-# IMPORTANT: include devDependencies
-RUN npm ci --include=dev
-
-# Copy source and build
+# copy source
 COPY . .
+
+# verify binaries (debug-safe)
+RUN ls node_modules/.bin
+
+# build
 RUN npm run build
 
 
-# ── Stage 2: Serve with nginx ──────────────────────────
+# ─────────────────────────────────────────────
+# Stage 3 — Production nginx
+# ─────────────────────────────────────────────
 FROM nginx:alpine AS runner
 
-# Copy built assets
-COPY --from=builder /app/dist /usr/share/nginx/html
+# remove default config
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom nginx config
+# custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# copy built files
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 3001
 
