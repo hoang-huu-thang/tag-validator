@@ -1,37 +1,29 @@
-# syntax=docker/dockerfile:1
+# Stage 1: Build the React Application
+FROM node:22-alpine AS build
 
-# ───────────── deps ─────────────
-FROM node:20-alpine AS deps
-
+# Set working directory
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Install dependencies (utilize Docker cache for node_modules)
+COPY package.json package-lock.json* ./
+RUN npm ci || npm install
 
-# FORCE npm install ALL deps (npm 10+ safe)
-RUN npm ci --include=dev --omit=optional
-
-
-# ───────────── builder ──────────
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-ENV PATH="/app/node_modules/.bin:$PATH"
-
-COPY --from=deps /app/node_modules ./node_modules
+# Copy project files and build
 COPY . .
-
 RUN npm run build
 
-
-# ───────────── runner ───────────
+# Stage 2: Serve the App using Nginx
 FROM nginx:alpine
 
+# Remove default Nginx config and copy ours for Port 3000
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copy the build artifacts from the build stage to Nginx public folder
+COPY --from=build /app/dist /usr/share/nginx/html
 
+# Expose Port 3000
 EXPOSE 3001
 
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
