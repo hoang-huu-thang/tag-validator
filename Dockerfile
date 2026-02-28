@@ -5,11 +5,14 @@ WORKDIR /app
 
 # Install deps first (layer cache)
 COPY package*.json ./
-RUN npm ci
+
+# IMPORTANT: include devDependencies
+RUN npm ci --include=dev
 
 # Copy source and build
 COPY . .
 RUN npm run build
+
 
 # ── Stage 2: Serve with nginx ──────────────────────────
 FROM nginx:alpine AS runner
