@@ -75,12 +75,17 @@ export function parseContent(content: string, language: Language = 'html'): Pars
             onopentag(name: string, attrs: Record<string, string>) {
                 const offset = parser.startIndex
                 const pos = offsetToLineCol(offset)
+
+                const raw = content.slice(parser.startIndex, parser.endIndex + 1)
+                const isSelfClosing = raw.endsWith('/>')
+
                 tokens.push({
                     type: 'OPEN',
                     name: name.toLowerCase(),
                     line: pos.line,
                     column: pos.column,
                     attrs,
+                    ...(isSelfClosing ? { isSelfClosing: true } : {})
                 })
 
                 // Exclude attribute values from secondary scan.

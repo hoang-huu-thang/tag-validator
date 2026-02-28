@@ -38,6 +38,12 @@ describe('validateTokens – basic cases', () => {
         expect(validate('<br/>')).toHaveLength(0);
         expect(validate('<img/>')).toHaveLength(0);
     });
+
+    it('reports NO errors for explicit self-closing tags (e.g. SVG)', () => {
+        expect(validate('<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />')).toHaveLength(0);
+        expect(validate('<path d="M150 0 L75 200 L225 200 Z" />')).toHaveLength(0);
+        expect(validate('<CustomComponent />', 'jsx')).toHaveLength(0);
+    });
 });
 
 describe('validateTokens – MISMATCH', () => {

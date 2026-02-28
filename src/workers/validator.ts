@@ -83,12 +83,12 @@ export function validateTokens(tokens: TagToken[], options: ValidateOptions): Va
         }
 
         if (token.type === 'OPEN') {
-            // Void elements don't need closing tags
-            if (VOID_ELEMENTS.has(token.name)) continue;
+            // Void elements and self-closing tags don't need closing tags
+            if (VOID_ELEMENTS.has(token.name) || token.isSelfClosing) continue;
             stack.push({ name: token.name, line: token.line, column: token.column });
         } else if (token.type === 'CLOSE') {
             // Ignore self-closing void in close position
-            if (VOID_ELEMENTS.has(token.name)) continue;
+            if (VOID_ELEMENTS.has(token.name) || token.isSelfClosing) continue;
 
             if (stack.length === 0) {
                 // No opening tag at all

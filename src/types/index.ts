@@ -6,6 +6,7 @@ export interface TagToken {
     line: number;
     column: number;
     attrs?: Record<string, string | null>;
+    isSelfClosing?: boolean;
 }
 
 export interface FixSuggestion {
