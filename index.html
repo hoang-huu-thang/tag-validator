@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ─── Primary SEO ─────────────────────────────────── -->
+  <!-- Google tag (gtag.js) - Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-52WQKGDW30"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-52WQKGDW30');
+  </script>
+
   <title>TagValidator – Free HTML/XML Tag Mismatch Detector Online</title>
   <meta name="description"
     content="Find unclosed & mismatched HTML/XML tags in seconds — free, no sign-up. Paste code or upload a file and get line-precise errors with one-click auto-fix. Try TagValidator now." />
@@ -117,7 +127,8 @@
         <li><strong>Auto-fix</strong> — one click closes all unclosed tags in the correct order.</li>
         <li><strong>Beautify / Format</strong> — indent and pretty-print messy markup instantly.</li>
         <li><strong>Drag-and-drop upload</strong> — drop <code>.html</code>, <code>.xml</code>, <code>.vue</code>,
-          <code>.jsx</code>, or <code>.tsx</code> files directly into the editor.</li>
+          <code>.jsx</code>, or <code>.tsx</code> files directly into the editor.
+        </li>
         <li><strong>Export errors</strong> — download the error list as CSV or JSON for CI pipelines or bug reports.
         </li>
         <li><strong>Dark &amp; light themes</strong> — works comfortably in any environment.</li>

@@ -4,6 +4,7 @@ import { EditorPanel } from './components/EditorPanel';
 import { DiagnosticsPanel } from './components/DiagnosticsPanel';
 import { useWorker } from './hooks/useWorker';
 import { useAppStore } from './store/useAppStore';
+import { trackEvent } from './utils/analytics';
 import type { ValidationError } from './types';
 import './styles/globals.css';
 
@@ -83,6 +84,7 @@ export default function App() {
   }, []);
 
   const handleUploadClick = () => {
+    trackEvent('click_upload');
     fileInputRef.current?.click();
   };
 
@@ -186,7 +188,7 @@ export default function App() {
             {content && (
               <button
                 className="btn btn-ghost text-xs py-0.5"
-                onClick={() => { cancel(); handleValidate(content); }}
+                onClick={() => { trackEvent('click_validate'); cancel(); handleValidate(content); }}
                 title="Re-run validation"
               >
                 ↻ Re-validate

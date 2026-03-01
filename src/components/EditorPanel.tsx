@@ -4,6 +4,7 @@ import { Upload, FileCode2 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { useMonaco as useMonacoHook } from '../hooks/useMonaco';
 import { readFileAsText, detectLanguageFromFilename, detectLanguageFromContent } from '../utils/fileHandler';
+import { trackEvent } from '../utils/analytics';
 import type { ValidationError } from '../types';
 import type * as MonacoTypes from 'monaco-editor';
 
@@ -69,6 +70,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ onValidate, selectedEr
 
         // Auto-detect language when user pastes
         editor.onDidPaste(() => {
+            trackEvent('paste_code');
             const value = editor.getValue();
             if (value.trim()) {
                 const detected = detectLanguageFromContent(value);
