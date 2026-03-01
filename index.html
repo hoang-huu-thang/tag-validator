@@ -8,7 +8,7 @@
   <!-- ─── Primary SEO ─────────────────────────────────── -->
   <title>TagValidator – Free HTML/XML Tag Mismatch Detector Online</title>
   <meta name="description"
-    content="Detect HTML and XML tag mismatches instantly. Free online tool with real-time validation, Monaco Editor, line-level error reporting, and auto-fix. No install needed." />
+    content="Find unclosed & mismatched HTML/XML tags in seconds — free, no sign-up. Paste code or upload a file and get line-precise errors with one-click auto-fix. Try TagValidator now." />
   <meta name="keywords"
     content="HTML validator, XML validator, tag mismatch detector, HTML error checker, XML error checker, unclosed tag finder, malformed HTML, free online validator, real-time HTML checker, Monaco editor" />
   <meta name="author" content="TagValidator" />
@@ -91,11 +91,68 @@
   <!-- Noscript fallback for crawlers -->
   <noscript>
     <div
-      style="font-family:sans-serif;padding:2rem;text-align:center;background:#1e1e1e;color:#e0e0e0;min-height:100vh">
-      <h1>TagValidator – HTML/XML Tag Mismatch Detector</h1>
-      <p>A free, real-time HTML and XML validator. Detect missing closing tags, mismatches, and structural errors
-        instantly.</p>
-      <p>Please enable JavaScript to use this application.</p>
+      style="font-family:Inter,sans-serif;max-width:860px;margin:0 auto;padding:2.5rem 1.5rem;background:#1e1e1e;color:#e0e0e0;min-height:100vh;line-height:1.7">
+
+      <h1 style="font-size:2rem;font-weight:700;color:#64b5f6;margin-bottom:0.5rem">
+        TagValidator – Free HTML &amp; XML Tag Mismatch Checker Online
+      </h1>
+      <p style="color:#9e9e9e;margin-top:0">Instant, line-precise validation. No install, no sign-up — 100% free.</p>
+
+      <h2 style="font-size:1.2rem;color:#90caf9;margin-top:2rem">What is TagValidator?</h2>
+      <p>
+        TagValidator is a free online tool that detects <strong>unclosed tags</strong>, <strong>mismatched closing
+          tags</strong>, and <strong>structural errors</strong> in HTML, XML, JSX, Vue, and XHTML documents.
+        Simply paste your code into the editor or upload a file — the validator parses your markup in real time
+        inside a Web Worker so the browser UI never freezes, even for large files.
+      </p>
+
+      <h2 style="font-size:1.2rem;color:#90caf9;margin-top:2rem">Key Features</h2>
+      <ul style="padding-left:1.5rem">
+        <li><strong>Real-time validation</strong> — errors appear as you type, powered by a non-blocking Web Worker.
+        </li>
+        <li><strong>Line &amp; column precision</strong> — every error links back to the exact character position in
+          your source.</li>
+        <li><strong>Monaco Editor</strong> — the same editor used by VS Code, with full syntax highlighting and keyboard
+          shortcuts.</li>
+        <li><strong>Auto-fix</strong> — one click closes all unclosed tags in the correct order.</li>
+        <li><strong>Beautify / Format</strong> — indent and pretty-print messy markup instantly.</li>
+        <li><strong>Drag-and-drop upload</strong> — drop <code>.html</code>, <code>.xml</code>, <code>.vue</code>,
+          <code>.jsx</code>, or <code>.tsx</code> files directly into the editor.</li>
+        <li><strong>Export errors</strong> — download the error list as CSV or JSON for CI pipelines or bug reports.
+        </li>
+        <li><strong>Dark &amp; light themes</strong> — works comfortably in any environment.</li>
+      </ul>
+
+      <h2 style="font-size:1.2rem;color:#90caf9;margin-top:2rem">Supported Markup Languages</h2>
+      <ul style="padding-left:1.5rem">
+        <li><strong>HTML5</strong> — full support including void elements and optional closing tags.</li>
+        <li><strong>XML / XHTML</strong> — strict well-formedness checking; every opened tag must be closed.</li>
+        <li><strong>JSX / TSX</strong> — React component markup with self-closing tag detection.</li>
+        <li><strong>Vue Single-File Components</strong> — validates <code>&lt;template&gt;</code> sections.</li>
+      </ul>
+
+      <h2 style="font-size:1.2rem;color:#90caf9;margin-top:2rem">Who Is It For?</h2>
+      <p>
+        TagValidator is built for <strong>web developers</strong>, <strong>front-end engineers</strong>,
+        <strong>content editors</strong>, and <strong>QA teams</strong> who need a quick sanity-check on
+        markup before deploying to production. It is also useful for checking <strong>email HTML templates</strong>,
+        <strong>CMS-generated markup</strong>, and <strong>legacy codebases</strong> that cannot be run through
+        a local linter.
+      </p>
+
+      <h2 style="font-size:1.2rem;color:#90caf9;margin-top:2rem">Common Use Cases</h2>
+      <ul style="padding-left:1.5rem">
+        <li>Check missing HTML tags copied from a CMS or email builder.</li>
+        <li>Validate XML configuration files for build tools or data feeds.</li>
+        <li>Find unclosed <code>&lt;div&gt;</code> or <code>&lt;section&gt;</code> tags that break page layouts.</li>
+        <li>Debug JSX render errors caused by improperly closed components.</li>
+        <li>Audit third-party HTML snippets before embedding them in your site.</li>
+      </ul>
+
+      <p style="margin-top:2rem;padding:1rem;background:#263238;border-radius:8px;border-left:4px solid #64b5f6">
+        <strong>Please enable JavaScript</strong> to use the interactive TagValidator application.
+        The full editor and validator require JavaScript to run in your browser.
+      </p>
     </div>
   </noscript>
 

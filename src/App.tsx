@@ -92,6 +92,9 @@ export default function App() {
       className="flex flex-col h-full"
       style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}
     >
+      {/* SEO content – visually hidden, readable by JS-capable crawlers */}
+      <SeoDescription />
+
       {/* Header */}
       <Header onUploadClick={handleUploadClick} />
 
@@ -193,6 +196,70 @@ function LanguageBarWithBeautify({ onValidate, beautifyFn }: { onValidate: (text
           ✦ Beautify
         </button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * SEO content component — visually hidden but present in the DOM so that
+ * JavaScript-rendering crawlers (e.g. Googlebot) can index it.
+ * Users never see this content; screen readers skip it via aria-hidden.
+ */
+function SeoDescription() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        left: '-9999px',
+        top: 'auto',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden',
+      }}
+    >
+      <h1>TagValidator – Free HTML &amp; XML Tag Mismatch Checker Online</h1>
+      <p>
+        TagValidator is a free online tool that detects unclosed tags, mismatched closing tags, and structural
+        errors in HTML, XML, JSX, Vue, and XHTML documents. Paste your code or upload a file and get instant,
+        line-precise error reports. No installation, no sign-up required.
+      </p>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li>Real-time HTML and XML validation powered by a non-blocking Web Worker</li>
+        <li>Line and column precision — every error links back to its exact position</li>
+        <li>Monaco Editor with full syntax highlighting (same engine as VS Code)</li>
+        <li>One-click auto-fix to close all unclosed tags in the correct order</li>
+        <li>Beautify and format messy markup instantly</li>
+        <li>Drag-and-drop upload for .html, .xml, .vue, .jsx, and .tsx files</li>
+        <li>Export error lists as CSV or JSON for CI pipelines and bug reports</li>
+        <li>Dark and light themes</li>
+      </ul>
+
+      <h2>Supported Languages</h2>
+      <ul>
+        <li>HTML5 — including void elements and optional closing tags</li>
+        <li>XML / XHTML — strict well-formedness checking</li>
+        <li>JSX / TSX — React component markup with self-closing tag detection</li>
+        <li>Vue Single-File Components — validates template sections</li>
+      </ul>
+
+      <h2>Common Use Cases</h2>
+      <ul>
+        <li>Check missing HTML tags in CMS-generated or email builder output</li>
+        <li>Validate XML configuration files for build tools or data feeds</li>
+        <li>Find unclosed div or section tags that break page layouts</li>
+        <li>Debug JSX render errors caused by improperly closed components</li>
+        <li>Audit third-party HTML snippets before embedding them on your site</li>
+      </ul>
+
+      <h2>Who Is It For?</h2>
+      <p>
+        TagValidator is built for web developers, front-end engineers, content editors, and QA teams who need a
+        quick sanity-check on markup before deploying to production. It also helps with email HTML templates,
+        legacy codebases, and any code that cannot be run through a local linter.
+      </p>
     </div>
   );
 }
