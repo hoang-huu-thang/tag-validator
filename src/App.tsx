@@ -29,6 +29,50 @@ export default function App() {
     document.documentElement.classList.toggle('light', theme === 'light');
   }, [theme]);
 
+  // Handle initial language from URL on mount
+  useEffect(() => {
+    const path = window.location.pathname;
+    const match = path.match(/\/(html|xml|vue|jsx)-validator/);
+    if (match && match[1]) {
+      // Set the global state language directly
+      useAppStore.getState().setLanguage(match[1] as any);
+    }
+  }, []);
+
+  // Sync language with URL and SEO meta tags
+  useEffect(() => {
+    const langUpper = language.toUpperCase();
+
+    // Update Document Title
+    document.title = `${langUpper} Validator - Free Online ${langUpper} Tag Checker`;
+
+    // Update Meta Description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', `Free online ${langUpper} validator. Detect unclosed tags, mismatched closing tags, and structural errors in ${langUpper} documents instantly.`);
+
+    // Update Canonical URL
+    let linkCanonical = document.querySelector('link[rel="canonical"]');
+    if (!linkCanonical) {
+      linkCanonical = document.createElement('link');
+      linkCanonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(linkCanonical);
+    }
+    linkCanonical.setAttribute('href', `https://tagvalidator.com/${language}-validator`);
+
+    // Only push state if the current URL doesn't already match
+    const newPath = `/${language}-validator`;
+    if (window.location.pathname !== newPath && window.location.pathname !== '/') {
+      window.history.pushState({}, '', newPath);
+    } else if (window.location.pathname === '/') {
+      window.history.replaceState({}, '', newPath);
+    }
+  }, [language]);
+
   // Trigger validation
   const handleValidate = useCallback((text: string) => {
     validate(text, language);
